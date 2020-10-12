@@ -12,6 +12,7 @@ public class VirtualPetShelter {
         virtualPets.put(virtualPetToAdd.getName(), virtualPetToAdd);
 
     }
+
     public VirtualPet findVirtualPet(String name) {
         return virtualPets.get(name);
     }
@@ -26,23 +27,45 @@ public class VirtualPetShelter {
     }
 
     public void feedAll() {
-    //for all virtual pets... loop over them and feed each one
+        //for all virtual pets... loop over them and feed each one
         //for each VirtualPet called pet IN the virtualPets collection
-        for(VirtualPet pet : virtualPets.values()){
-            pet.feed();
+        for (VirtualPet pet : virtualPets.values()) {
+            if (pet instanceof Organic) {
+                ((Organic) pet).feed();
+            }
         }
     }
 
 
     public void waterAll() {
         for (VirtualPet pet : virtualPets.values()) {
-            pet.water();
+            if (pet instanceof Organic) {
+                ((Organic) pet).water();
+            }
         }
     }
 
-    public void showAllPets() {
+    public void showAllOrganicPets() {
         for (VirtualPet pet : virtualPets.values()) {
-            System.out.println(pet.getName() + " " + pet.getDescriptions() + " " + pet.getHunger() + " " + pet.getThirst() + " " + pet.getBoredom() + " " + pet.getHappiness() + " " + pet.getTiredness());
+            if (pet instanceof Organic) {
+                System.out.println(pet.getName() + " " + pet.getDescriptions() + " " + ((Organic) pet).getHunger() + " " + ((Organic) pet).getThirst() + " " + ((Organic) pet).getBoredom() + " " + ((Organic) pet).getHappiness() + " " + ((Organic) pet).getTiredness());
+            }
         }
     }
+
+    public void showAllRoboticPets() {
+        for (VirtualPet pet : virtualPets.values()) {
+            if (pet instanceof Robotic) {
+                System.out.println(pet.getName() + " " + pet.getDescriptions() + " " + ((Robotic) pet).getOil() + " " + ((Robotic) pet).getCharge());
+            }
+        }
+
+    }
 }
+
+
+
+
+
+
+

@@ -12,33 +12,33 @@ public class VirtualPetShelterTest {
     VirtualPetShelter petTest = new VirtualPetShelter();
 
 
-    VirtualPet virtualPet1 = new VirtualPet("Rabbit", "Hops", 20, 35, 9, 10, 4);
-    VirtualPet virtualPet2 = new VirtualPet("Bird","Fly", 10, 15, 8, 12, 3);
+    Dog fido  = new Dog("Fido", "Happy Dog", 20, 35, 9, 10, 4, 10);
+    Cat megan = new Cat("Megan","Playful Cat", 10, 15, 8, 12, 3, 0);
 
 
 
 
 @Test
 public void ShouldReturnVirtualPetName(){
-       petTest.add(virtualPet1);
-       VirtualPet retrievedVirtualPet = petTest.findVirtualPet(virtualPet1.getName());
-       assertEquals(retrievedVirtualPet, virtualPet1);
+       petTest.add(fido);
+       VirtualPet retrievedVirtualPet = petTest.findVirtualPet(fido.getName());
+       assertEquals(retrievedVirtualPet,fido);
 }
 
 @Test
 public void ShouldReturnVirtualPetDescriptions() {
-    petTest.add(virtualPet2);
-    VirtualPet retrievedVirtualPet = petTest.findVirtualPet(virtualPet2.getName());
-    assertEquals(retrievedVirtualPet, virtualPet2);
+    petTest.add(megan);
+    VirtualPet retrievedVirtualPet = petTest.findVirtualPet(megan.getName());
+    assertEquals(retrievedVirtualPet, megan);
 
     }
 
 @Test
 public void shouldGetAllPets() {
-    petTest.add(virtualPet1);
-    petTest.add(virtualPet2);
+    petTest.add(fido);
+    petTest.add(megan);
    Collection<VirtualPet> allPets = petTest.getAllPets();
-    assertEquals(allPets, containsInAnyOrder(virtualPet1,virtualPet2));
+    assertEquals(allPets, containsInAnyOrder(fido,megan));
 
 
     }
@@ -46,12 +46,12 @@ public void shouldGetAllPets() {
 
 @Test
 public void shouldBeAbleToRemoveAPet(){
-    petTest.add(virtualPet1);
-    petTest.adopt(virtualPet1);
-    petTest.add(virtualPet2);
-    petTest.adopt(virtualPet2);
-    VirtualPet retrievedVirtualPet1 = petTest.findVirtualPet("Rabbit");
-    VirtualPet retrievedVirtualPet2 = petTest.findVirtualPet("Bird");
+    petTest.add(fido);
+    petTest.adopt(fido);
+    petTest.add(megan);
+    petTest.adopt(megan);
+    VirtualPet retrievedVirtualPet1 = petTest.findVirtualPet("Fido");
+    VirtualPet retrievedVirtualPet2 = petTest.findVirtualPet("Megan");
     assertEquals(retrievedVirtualPet1, null);
     assertEquals(retrievedVirtualPet2, null);
 
@@ -60,25 +60,22 @@ public void shouldBeAbleToRemoveAPet(){
 
 @Test
 public void ShouldFeedAllPets(){
-    petTest.add(virtualPet1);
-    petTest.add(virtualPet2);
+    petTest.add(fido);
+    petTest.add(megan);
     petTest.feedAll();
-    assertEquals(virtualPet1.getHunger(), 11);
-    assertEquals(virtualPet2.getHunger(), 1);
+    assertEquals(fido.getHunger(), 11);
+    assertEquals(megan.getHunger(), 1);
     }
 
 @Test
 public void ShouldWaterAllPets(){
-    petTest.add((virtualPet1));
-    petTest.add(virtualPet2);
+    petTest.add((fido));
+    petTest.add(megan);
     petTest.waterAll();
-    assertEquals(virtualPet1.getThirst(), 20);
-    assertEquals(virtualPet2.getThirst(), 0);
+    assertEquals(fido.getThirst(), 20);
+    assertEquals(megan.getThirst(), 0);
 
     }
-
-
-
 
 }
 
